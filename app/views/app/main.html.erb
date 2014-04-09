@@ -1,0 +1,32 @@
+<div class="app-wrapper">
+    <div class="b-header">
+            <b class="user">
+                
+            </b>
+            <span class="hide btn btn-info glyphicon glyphicon-wrench">
+            </span>
+            <span>
+                <%= link_to "LogOut", destroy_user_session_path, 
+                    :method => :delete, 
+                    :class => "btn btn-danger glyphicon glyphicon-user" %>
+            </span>
+    </div>
+
+    <div class="b-sidebar">
+        <div class="info">
+            <div class="title">Info</div>
+            <div class="main">
+              <ul class="list-unstyled">
+                <li>Description:</li>
+                <li>DateStart:</li>
+                <li>PM:</li>
+                <li>Role:</li>
+              </ul>
+            </div>
+        </div>
+    </div>
+        
+    <div class="b-main">   
+    </div>
+
+</div>

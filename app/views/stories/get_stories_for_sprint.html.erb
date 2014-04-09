@@ -1,0 +1,10 @@
+<% @array_of_stories.each do |story| %>
+      <ul>
+        <li><%= story.title %></li>
+        <li><%= story.description %></li>
+        <li><%= story.id %></li>
+        <li><%= story.project_id %></li>
+        <li><%= story.sprint_id %></li>
+        <li><%= story.status %></li>
+      </ul>
+    <% end %>
