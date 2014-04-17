@@ -15,7 +15,7 @@ SSTaskTracker::Application.routes.draw do
 
   get "active-stories/for-project/:id" => "stories#get_stories_for_sprint"
 
-  get "users-candidats/for-team/:id" => "users#get_all", as: :user
+  get "teams-candidates/for-team/:id" => "users#get_all", as: :user
 
   get "teams/for-project/:id" => "teams#get_teams"
 
