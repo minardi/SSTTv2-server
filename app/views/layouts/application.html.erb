@@ -16,8 +16,8 @@
             };
         <% end %>
     </script>
-
-    <% if user_signed_in? %>
+    
+    <% if user_signed_in? && request.path == '/' %>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     
@@ -51,17 +51,17 @@
         <script src="app/scripts/Projects/ProjectsModelView.js"></script>
         <script src="app/scripts/Projects/ProjectsCollectionView.js"></script>
 
-        <!-- module ProductBacklogStories-->
-        <script src="app/scripts/ProductBacklogStories/ProductBacklogStoriesModel.js"></script>
-        <script src="app/scripts/ProductBacklogStories/ProductBacklogStoriesCollection.js"></script>
-        <script src="app/scripts/ProductBacklogStories/ProductBacklogStoriesModelView.js"></script>
-        <script src="app/scripts/ProductBacklogStories/ProductBacklogStoriesCollectionView.js"></script>
+        <!-- module ProductBacklog-->
+        <script src="app/scripts/ProductBacklog/ProductBacklogModel.js"></script>
+        <script src="app/scripts/ProductBacklog/ProductBacklogCollection.js"></script>
+        <script src="app/scripts/ProductBacklog/ProductBacklogModelView.js"></script>
+        <script src="app/scripts/ProductBacklog/ProductBacklogCollectionView.js"></script>
          
-        <!-- module SprintBacklogStories -->
-        <script src="app/scripts/SprintBacklogStories/SprintBacklogStoriesModel.js"></script>
-        <script src="app/scripts/SprintBacklogStories/SprintBacklogStoriesCollection.js"></script>
-        <script src="app/scripts/SprintBacklogStories/SprintBacklogStoriesModelView.js"></script>
-        <script src="app/scripts/SprintBacklogStories/SprintBacklogStoriesCollectionView.js"></script>
+        <!-- module SprintBacklog -->
+        <script src="app/scripts/SprintBacklog/SprintBacklogModel.js"></script>
+        <script src="app/scripts/SprintBacklog/SprintBacklogCollection.js"></script>
+        <script src="app/scripts/SprintBacklog/SprintBacklogModelView.js"></script>
+        <script src="app/scripts/SprintBacklog/SprintBacklogCollectionView.js"></script>
 
         <!-- module ScrumPage-->
         <script src="app/scripts/ScrumPage/ScrumPageModel.js"></script>
@@ -85,7 +85,7 @@
          
         <!-- module TeamEditPage-->
         <script src="app/scripts/TeamEditPage/TeamEditPageModel.js"></script>
-        <script src="app/scripts/TeamEditPage/TeamEditPageModelView.js"></script>      
+        <script src="app/scripts/TeamEditPage/TeamEditPageModelView.js"></script>   
 
         <!-- module TeamMembers-->
         <script src="app/scripts/TeamMembers/TeamMembersModel.js"></script>
@@ -98,13 +98,23 @@
         <script src="app/scripts/Teams/TeamsCollection.js"></script>
         <script src="app/scripts/Teams/TeamsModelView.js"></script>
         <script src="app/scripts/Teams/TeamsCollectionView.js"></script>
-         
+
         <!-- module TeamCandidates-->
         <script src="app/scripts/TeamCandidates/TeamCandidatesModel.js"></script>
         <script src="app/scripts/TeamCandidates/TeamCandidatesCollection.js"></script>
         <script src="app/scripts/TeamCandidates/TeamCandidatesModelView.js"></script>
         <script src="app/scripts/TeamCandidates/TeamCandidatesCollectionView.js"></script>
-  
+
+        <!-- module BacklogItem-->
+        <script src="app/scripts/BacklogItem/BacklogItemModel.js"></script>
+        <script src="app/scripts/BacklogItem/BacklogItemCollection.js"></script>
+         
+        <!-- module BacklogItemEdit-->
+        <script src="app/scripts/BacklogItemEdit/BacklogItemEditModel.js"></script>
+        <script src="app/scripts/BacklogItemEdit/BacklogItemEditCollection.js"></script>
+        <script src="app/scripts/BacklogItemEdit/BacklogItemEditModelView.js"></script>
+        <script src="app/scripts/BacklogItemEdit/BacklogItemEditCollectionView.js"></script>
+         
         <!-- endbuild -->
     <% end %>
 
