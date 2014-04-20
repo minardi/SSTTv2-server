@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140420164032) do
+ActiveRecord::Schema.define(version: 20140420231728) do
 
   create_table "backlog_items", force: true do |t|
     t.string   "title"
@@ -20,23 +20,6 @@ ActiveRecord::Schema.define(version: 20140420164032) do
     t.integer  "parent_id"
     t.string   "status"
     t.string   "item_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "buttons", force: true do |t|
-    t.string   "content"
-    t.string   "glyph"
-    t.string   "show_only"
-    t.string   "show_except"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "permissions", force: true do |t|
-    t.integer  "button_id"
-    t.string   "page"
-    t.string   "right"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,10 +1,15 @@
 SSTaskTracker::Application.routes.draw do
 
+
+  resources :backlog_items
+
   get '/users/sign_up', to: redirect('/users/sign_in')
 
-  get 'projects/info/:id' => 'projects#get_project_info'
+  devise_for :users
   
   get 'backlog_items/get_items/:item_type/:status/:parent_id' => 'backlog_items#get_items'
+
+  get 'projects/info/:id' => 'projects#get_project_info'
   
   get 'tasks/for-project/:id' => 'tasks#get_tasks'
    
@@ -19,14 +24,6 @@ SSTaskTracker::Application.routes.draw do
   get "teams/for-project/:id" => "teams#get_teams"
 
   get 'users/for-team/:id' => 'team_members#get_team_members', as: :team_member
-
-  get ':params(/:tmp(/:tmp))' => 'app#main'
-
-  get "app/main"
-
-  root 'app#main'
-  
-  resources :backlog_items
    
   resources :projects
 
@@ -39,8 +36,13 @@ SSTaskTracker::Application.routes.draw do
   resources :sprints
 
   resources :team_members
-  
- devise_for :users
+
+  get ':params(/:tmp(/:tmp))' => 'app#main'
+
+  get "app/main"
+
+  root 'app#main'
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with 'rake routes'.

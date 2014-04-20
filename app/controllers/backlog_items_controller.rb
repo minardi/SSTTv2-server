@@ -1,17 +1,6 @@
 class BacklogItemsController < ApplicationController
   before_action :set_backlog_item, only: [:show, :edit, :update, :destroy]
-  
- def get_items 
-    @backlog_items = BacklogItem.all.where(
-	"parent_id=? AND item_type = ? AND status = ?",
-	params[:parent_id], params[:item_type], params[:status]) 
-	
-	 respond_to do |format|
-      format.html # get_items.html.erb
-      format.json { render json: @backlog_items }
-    end
-  end
-  
+
   # GET /backlog_items
   # GET /backlog_items.json
   def index
@@ -69,6 +58,18 @@ class BacklogItemsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to backlog_items_url }
       format.json { head :no_content }
+    end
+  end
+  
+  # GET /backlog_items/get_items/:item_type/:status/:parent_id
+  def get_items
+    @backlog_items = BacklogItem.where(
+		"item_type =? AND status=? AND parent_id=?",
+		params[:item_type], params[:status], params[:parent_id]
+	)
+	
+	respond_to do |format|
+      format.json { render json:  @backlog_items }
     end
   end
 
