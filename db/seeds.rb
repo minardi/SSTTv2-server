@@ -5,6 +5,58 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+items = BacklogItem.create([
+		{
+			title: "P1.Story_1",
+			description: "bla bla",
+			estimation: "1",
+			parent_id: "1",
+			status: "product",
+			item_type: "story"
+		},
+		{
+			title: "P1.Story_2",
+			description: "bla bla",
+			estimation: "1",
+			parent_id: "1",
+			status: "product",
+			item_type: "story"
+		},
+		{
+			title: "P1.Story_3",
+			description: "bla bla",
+			estimation: "1",
+			parent_id: "1",
+			status: "product",
+			item_type: "story"
+		},
+		{
+			title: "P2.Story_1",
+			description: "bla bla",
+			estimation: "1",
+			parent_id: "2",
+			status: "product",
+			item_type: "story"
+		},
+		{
+			title: "P2.Story_2",
+			description: "bla bla",
+			estimation: "1",
+			parent_id: "2",
+			status: "product",
+			item_type: "story"
+		},
+		{
+			title: "P2.Story_3",
+			description: "bla bla",
+			estimation: "1",
+			parent_id: "2",
+			status: "product",
+			item_type: "story"
+		}
+   ])
+
 projects = Project.create([
     {
         title: 'car', 

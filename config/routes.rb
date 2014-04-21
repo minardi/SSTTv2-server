@@ -1,9 +1,10 @@
 SSTaskTracker::Application.routes.draw do
 
-
   get '/users/sign_up', to: redirect('/users/sign_in')
 
   devise_for :users
+  
+  get 'backlog_items/get_items/:item_type/:status/:parent_id' => 'backlog_items#get_items'
 
   get 'projects/info/:id' => 'projects#get_project_info'
   
@@ -22,6 +23,8 @@ SSTaskTracker::Application.routes.draw do
   get 'users/for-team/:id' => 'team_members#get_team_members', as: :team_member
    
   resources :projects
+  
+  resources :backlog_items
 
   resources :stories
 
