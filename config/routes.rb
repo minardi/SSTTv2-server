@@ -5,6 +5,8 @@ SSTaskTracker::Application.routes.draw do
   devise_for :users
   
   get 'backlog_items/get_items/:item_type/:status/:parent_id' => 'backlog_items#get_items'
+  
+  get 'backlog_items/get_tasks/:project_id' => 'backlog_items#get_tasks'
 
   get 'projects/info/:id' => 'projects#get_project_info'
   

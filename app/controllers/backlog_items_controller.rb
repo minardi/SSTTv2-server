@@ -72,6 +72,33 @@ class BacklogItemsController < ApplicationController
       format.json { render json:  @backlog_items }
     end
   end
+  
+  def get_tasks
+    @sprint_id = BacklogItem.where(
+		"item_type = ? AND status= ? AND parent_id=?",
+		"sprint", "active", params[:project_id]
+	).pluck(:id)
+	
+	@stories = BacklogItem.where(
+		"item_type = ? AND status= ? AND parent_id=?",
+		"story", "sprint",	@sprint_id
+	)
+	
+	@all_tasks = []
+	@stories.each do |story|
+		@tasks = BacklogItem.where(
+		"item_type = ? AND parent_id=?",
+		"task", story.id
+		)
+	@all_tasks.push(@tasks)
+	end
+	
+	@all_tasks = @all_tasks.flatten
+	
+	respond_to do |format|
+      format.json { render json:  @all_tasks }
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
