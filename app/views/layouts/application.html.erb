@@ -3,7 +3,10 @@
 <head>
     <title>SSTaskTracking</title>
 
-    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <% if request.path == '/' %>
+        <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <% end %>
+
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
 
@@ -113,6 +116,15 @@
         <!-- module BacklogItemEdit-->
         <script src="app/scripts/BacklogItemEdit/BacklogItemEditModel.js"></script>
         <script src="app/scripts/BacklogItemEdit/BacklogItemEditModelView.js"></script>
+
+        <!-- module Router--> 
+        <script src="app/scripts/Router/Router.js"></script>
+         
+        <!-- module Sprint-->
+        <script src="app/scripts/Sprint/SprintModel.js"></script>
+        <script src="app/scripts/Sprint/SprintCollection.js"></script>
+        <script src="app/scripts/Sprint/SprintModelView.js"></script>
+        <script src="app/scripts/Sprint/SprintCollectionView.js"></script>
          
         <!-- endbuild -->
     <% end %>

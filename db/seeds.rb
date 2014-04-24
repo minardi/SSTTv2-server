@@ -11,8 +11,8 @@ items = BacklogItem.create([
 			title: "P1.Story_1",
 			description: "bla bla",
 			estimation: "1",
-			parent_id: "1",
-			status: "product",
+			parent_id: "7",
+			status: "sprint",
 			item_type: "story"
 		},
 		{
@@ -54,6 +54,30 @@ items = BacklogItem.create([
 			parent_id: "2",
 			status: "product",
 			item_type: "story"
+		},
+		{
+			title: "Sprint1",
+			description: "bla bla",
+			estimation: "",
+			parent_id: "1",
+			status: "active",
+			item_type: "sprint"
+		},
+		{
+			title: "Story1. Task1",
+			description: "bla bla",
+			estimation: "1",
+			parent_id: "1",
+			status: "todo",
+			item_type: "task"
+		},
+		{
+			title: "Story1. Task2",
+			description: "bla bla",
+			estimation: "1",
+			parent_id: "1",
+			status: "todo",
+			item_type: "task"
 		}
    ])
 
