@@ -61,7 +61,7 @@ items = BacklogItem.create([
 			estimation: "",
 			parent_id: "1",
 			status: "active",
-			item_type: "sprint"
+			item_type: "sprint",
 		},
 		{
 			title: "Story1. Task1",
