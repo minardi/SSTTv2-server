@@ -24,10 +24,14 @@ class BacklogItemsController < ApplicationController
   # POST /backlog_items
   # POST /backlog_items.json
   def create
-    @backlog_item = BacklogItem.new(backlog_item_params)
+    @backlog_item = BacklogItem.new(backlog_item_all_params)
     
-    if @backlog_item.item_type == "sprint" && params.has_key?("start_date") && params.has_key?("end_date")
-      @backlog_item.info = {start_date: params[:start_date], end_date: params[:end_date]}.to_json
+    if @backlog_item.item_type == "sprint"
+      if params.has_key?("start_date") && params.has_key?("end_date")
+        @backlog_item.info = {start_date: params[:start_date], end_date: params[:end_date]}.to_json
+      else
+        #@backlog_item.info = params[:info]
+      end
     end
 
     respond_to do |format|
@@ -44,12 +48,16 @@ class BacklogItemsController < ApplicationController
   # PATCH/PUT /backlog_items/1
   # PATCH/PUT /backlog_items/1.json
   def update
-    if @backlog_item.item_type == "sprint" && params.has_key?("start_date") && params.has_key?("end_date")
-      @backlog_item.update(info: {start_date: params[:start_date], end_date: params[:end_date]}.to_json)
+    if @backlog_item.item_type == "sprint"
+      if params.has_key?("start_date") && params.has_key?("end_date")
+        @backlog_item.update(info: {start_date: params[:start_date], end_date: params[:end_date]}.to_json)
+      else
+        #@backlog_item.update(info: params[:info])
+      end
     end
 
     respond_to do |format|
-      if @backlog_item.update(backlog_item_params)
+      if @backlog_item.update(backlog_item_all_params)
         format.html { redirect_to @backlog_item, notice: 'Backlog item was successfully updated.' }
         format.json { head :no_content }
       else
@@ -122,6 +130,10 @@ class BacklogItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def backlog_item_params
       params.require(:backlog_item).permit(:title, :description, :estimation, :parent_id, :status, :item_type)
+    end
+
+    def backlog_item_all_params
+      params.require(:backlog_item).permit(:title, :description, :estimation, :parent_id, :status, :item_type, :info)
     end
 
 end
