@@ -33,8 +33,8 @@
         <td><%= backlog_item.status %></td>
         <td><%= backlog_item.item_type %></td>
         <td><%= backlog_item.info %></td>
-        <td><% if backlog_item.item_type == "sprint" %><%= backlog_item.info["start_at"] %><% end %></td>
-        <td><% if backlog_item.item_type == "sprint" %><%= backlog_item.info["end_at"] %><% end %></td>
+        <td><% if backlog_item.item_type == "sprint" %><%= backlog_item.info["start_date"] %><% end %></td>
+        <td><% if backlog_item.item_type == "sprint" %><%= backlog_item.info["end_date"] %><% end %></td>
         <td><%= link_to 'Show', backlog_item %></td>
         <td><%= link_to 'Edit', edit_backlog_item_path(backlog_item) %></td>
         <td><%= link_to 'Destroy', backlog_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
