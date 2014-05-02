@@ -25,6 +25,10 @@ class BacklogItemsController < ApplicationController
   # POST /backlog_items.json
   def create
     @backlog_item = BacklogItem.new(backlog_item_params)
+    
+    if @backlog_item.item_type == "sprint" && params.has_key?("start_at") && params.has_key?("end_at")
+      @backlog_item.info = {start_at: params[:start_at], end_at: params[:end_at]}.to_json
+    end
 
     respond_to do |format|
       if @backlog_item.save
@@ -40,6 +44,10 @@ class BacklogItemsController < ApplicationController
   # PATCH/PUT /backlog_items/1
   # PATCH/PUT /backlog_items/1.json
   def update
+    if @backlog_item.item_type == "sprint" && params.has_key?("start_at") && params.has_key?("end_at")
+      @backlog_item.update(info: {start_at: params[:start_at], end_at: params[:end_at]}.to_json)
+    end
+
     respond_to do |format|
       if @backlog_item.update(backlog_item_params)
         format.html { redirect_to @backlog_item, notice: 'Backlog item was successfully updated.' }
@@ -64,15 +72,18 @@ class BacklogItemsController < ApplicationController
   # GET /backlog_items/get_items/:item_type/:status/:parent_id
   def get_items
     @backlog_items = BacklogItem.where(
-		"item_type =? AND status=? AND parent_id=?",
-		params[:item_type], params[:status], params[:parent_id]
-	)
-	
-	@backlog_items = @backlog_items.flatten
-	
-	respond_to do |format|
-      format.json { render json:  @backlog_items }
+		  "item_type =? AND status=? AND parent_id=?",
+		  params[:item_type], params[:status], params[:parent_id]
+    )
+
+	  @backlog_items.each do |backlog_item|
+      
+      if backlog_item.item_type == "sprint"
+        info = ActiveSupport::JSON.decode(backlog_item[:info])
+        backlog_item[:info] = info
+      end
     end
+    
   end
   
   def get_tasks
@@ -112,4 +123,5 @@ class BacklogItemsController < ApplicationController
     def backlog_item_params
       params.require(:backlog_item).permit(:title, :description, :estimation, :parent_id, :status, :item_type)
     end
+
 end
