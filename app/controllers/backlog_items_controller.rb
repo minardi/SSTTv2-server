@@ -95,28 +95,34 @@ class BacklogItemsController < ApplicationController
   end
   
   def get_tasks
-    @sprint_id = BacklogItem.where(
-		"item_type = ? AND status= ? AND parent_id=?",
-		"sprint", "active", params[:project_id]
-	).pluck(:id)
+    @sprint_id = params[:sprint_id]
 	
-	@stories = BacklogItem.where(
-		"item_type = ? AND status= ? AND parent_id=?",
-		"story", "sprint",	@sprint_id
-	)
+  	@stories = BacklogItem.where(
+  		"item_type = ? AND status = ? AND parent_id = ?",
+  		"story", "sprint",	@sprint_id
+  	)
+
+    @stories_all = BacklogItem.where(
+      "item_type = ? AND (status = ? OR status = ? OR status = ? OR status = ?) AND parent_id = ?",
+      "story", "todo", "progress", "verify", "done",  @sprint_id
+    )
 	
-	@all_tasks = []
-	@stories.each do |story|
-		@tasks = BacklogItem.where(
-		"item_type = ? AND parent_id=?",
-		"task", story.id
-		)
-	@all_tasks.push(@tasks)
-	end
+  	@all_tasks = []
+
+  	@stories.each do |story|
+  		@tasks = BacklogItem.where(
+    		"item_type = ? AND parent_id=?",
+    		"task", story.id
+  		)
+    	
+      @all_tasks.push(@tasks)
+  	end
+	  
+    @all_tasks.push(@stories_all)
+
+    @all_tasks = @all_tasks.flatten
 	
-	@all_tasks = @all_tasks.flatten
-	
-	respond_to do |format|
+	  respond_to do |format|
       format.json { render json:  @all_tasks }
     end
   end
