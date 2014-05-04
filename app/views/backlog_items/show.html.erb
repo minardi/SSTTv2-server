@@ -30,5 +30,12 @@
   <%= @backlog_item.item_type %>
 </p>
 
+<% if @backlog_item.item_type == "sprint" %>
+<p>
+  <strong>Info:</strong>
+  <%= @backlog_item.info %>
+</p>
+<% end %>
+
 <%= link_to 'Edit', edit_backlog_item_path(@backlog_item) %> |
 <%= link_to 'Back', backlog_items_path %>
