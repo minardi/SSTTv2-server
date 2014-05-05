@@ -24,7 +24,8 @@ class BacklogItemsController < ApplicationController
   # POST /backlog_items
   # POST /backlog_items.json
   def create
-    @backlog_item = BacklogItem.new(backlog_item_params)
+  
+    @backlog_item = BacklogItem.new(convert_item_params)
 
     respond_to do |format|
       if @backlog_item.save
@@ -110,6 +111,27 @@ class BacklogItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def backlog_item_params
-      params.require(:backlog_item).permit(:title, :description, :estimation, :parent_id, :status, :item_type)
+      params.require(:backlog_item).permit(:title, :description, :estimation, :parent_id, :status, :item_type, :info)
     end
+	
+	def convert_item_params
+	  @conv_params = {
+		:title => params[:title],
+		:description => params[:title],
+		:estimation => params[:estimation],
+		:parent_id => params[:parent_id],
+		:status => params[:status],
+		:item_type => params[:item_type],
+	  },
+	  
+	  @info = {
+		:start_at => params[:start_at],
+		:end_at => params[:end_at],
+	  }
+	  
+	  @conv_params.push(@info)
+	 puts @conv_params
+	  return @conv_params
+    end
+	
 end
