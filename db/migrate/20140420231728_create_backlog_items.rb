@@ -7,6 +7,7 @@ class CreateBacklogItems < ActiveRecord::Migration
       t.integer :parent_id
       t.string :status
       t.string :item_type
+	  t.string :info
 
       t.timestamps
     end

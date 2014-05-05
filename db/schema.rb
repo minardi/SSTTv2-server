@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140420231728) do
     t.integer  "parent_id"
     t.string   "status"
     t.string   "item_type"
+    t.string   "info"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

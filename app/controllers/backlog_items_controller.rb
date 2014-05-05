@@ -68,6 +68,8 @@ class BacklogItemsController < ApplicationController
 		params[:item_type], params[:status], params[:parent_id]
 	)
 	
+	@backlog_items = @backlog_items.flatten
+	
 	respond_to do |format|
       format.json { render json:  @backlog_items }
     end
