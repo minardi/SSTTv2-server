@@ -27,7 +27,7 @@
         <!-- build:css(.tmp) app/styles/main.css -->
         <link rel="stylesheet" href="app/styles/main.css">
         <!-- endbuild -->
-        
+
         <!-- build:js app/scripts/vendor.js -->
         <script src="app/bower_components/modernizr/modernizr.js"></script>		
         <script src="app/bower_components/jquery/jquery.js"></script>
@@ -38,6 +38,7 @@
         <script src="app/bower_components/backbone/backbone.js"></script>
         <script src="app/lib/backbone-mediator.js"></script>
         <script src="app/lib/backbone-modelBinder.js"></script>
+        <script src="app/lib/datepicker/js/bootstrap-datepicker.js"></script>
         <!-- endbuild -->
     
         <!-- build:js({.tmp,app}) app/scripts/main.js -->
@@ -48,7 +49,6 @@
         <!-- module User -->
         <script src="app/scripts/User/UserModel.js"></script>
         <script src="app/scripts/User/UserModelView.js"></script>
-        <script src="app/scripts/User/RoleModel.js"></script>
 
         <!-- module Projects-->
         <script src="app/scripts/Projects/ProjectsModel.js"></script>
@@ -117,15 +117,10 @@
         <!-- module BacklogItemEdit-->
         <script src="app/scripts/BacklogItemEdit/BacklogItemEditModel.js"></script>
         <script src="app/scripts/BacklogItemEdit/BacklogItemEditModelView.js"></script>
+        <script src="app/scripts/BacklogItemEdit/createDatepicker.js"></script>
          
         <!-- module PlanningBoard-->
         <script src="app/scripts/PlanningBoard/PlanningBoardModelView.js"></script>
-
-        <!-- module Sprint-->
-        <script src="app/scripts/Sprint/SprintModel.js"></script>
-        <script src="app/scripts/Sprint/SprintCollection.js"></script>
-        <script src="app/scripts/Sprint/SprintModelView.js"></script>
-        <script src="app/scripts/Sprint/SprintCollectionView.js"></script>
          
         <!-- endbuild -->
     <% end %>
