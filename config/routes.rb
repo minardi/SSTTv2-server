@@ -5,6 +5,10 @@ SSTaskTracker::Application.routes.draw do
   devise_for :users
   
   get 'backlog_items/get_items/:item_type/:status/:parent_id' => 'backlog_items#get_items'
+
+  get 'backlog_items/get_active_sprint/:parent_id' => 'backlog_items#get_active_sprint'
+  put 'backlog_items/get_active_sprint/:parent_id/:id', to: redirect('/backlog_items/%{id}')
+  patch 'backlog_items/get_active_sprint/:parent_id/:id', to: redirect('/backlog_items/%{id}')
   
   get 'backlog_items/get_tasks/:sprint_id' => 'backlog_items#get_tasks'
 
