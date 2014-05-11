@@ -92,6 +92,18 @@ class BacklogItemsController < ApplicationController
       end
     end
   end
+
+  def get_active_sprint
+    @backlog_item = BacklogItem.where(
+      "item_type ='sprint' AND status='active' AND parent_id=?",
+      params[:parent_id]
+    ).take
+    
+    if @backlog_item
+      info = ActiveSupport::JSON.decode(@backlog_item[:info])
+      @backlog_item[:info] = info
+    end
+  end
   
   def get_tasks
     @sprint_id = params[:sprint_id]
