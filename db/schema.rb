@@ -25,6 +25,23 @@ ActiveRecord::Schema.define(version: 20140420231728) do
     t.datetime "updated_at"
   end
 
+  create_table "buttons", force: true do |t|
+    t.string   "content"
+    t.string   "glyph"
+    t.string   "show_only"
+    t.string   "show_except"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "permissions", force: true do |t|
+    t.integer  "button_id"
+    t.string   "page"
+    t.string   "right"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "projects", force: true do |t|
     t.string   "title"
     t.string   "description"
