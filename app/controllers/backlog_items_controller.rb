@@ -51,9 +51,20 @@ class BacklogItemsController < ApplicationController
     if @backlog_item.item_type == "sprint"
       if params.has_key?("start_date") && params.has_key?("end_date")
         @backlog_item.update(info: {start_date: params[:start_date], end_date: params[:end_date]}.to_json)
-      else
-        #@backlog_item.update(info: params[:info])
       end
+
+      if params[:backlog_item][:status] == 'failed'
+        @stories = BacklogItem.where(
+          "item_type = 'story' AND parent_id = ?",
+          params[:id]
+        )
+
+        @stories.each do |story|
+          story.update(status: "product", parent_id: @backlog_item[:parent_id])
+        end
+
+      end
+
     end
 
     respond_to do |format|
