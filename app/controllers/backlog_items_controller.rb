@@ -92,7 +92,18 @@ class BacklogItemsController < ApplicationController
         backlog_item[:info] = info
       end
     end
+  end
+
+  def get_active_sprint
+    @backlog_item = BacklogItem.where(
+      "item_type ='sprint' AND status='active' AND parent_id=?",
+      params[:parent_id]
+    ).take
     
+    if @backlog_item
+      info = ActiveSupport::JSON.decode(@backlog_item[:info])
+      @backlog_item[:info] = info
+    end
   end
   
   def get_tasks
@@ -103,7 +114,7 @@ class BacklogItemsController < ApplicationController
   		"story", "sprint",	@sprint_id
   	)
 
-    @stories_all = BacklogItem.where(
+    @stories_without_task = BacklogItem.where(
       "item_type = ? AND (status = ? OR status = ? OR status = ? OR status = ?) AND parent_id = ?",
       "story", "todo", "progress", "verify", "done",  @sprint_id
     )
@@ -119,7 +130,7 @@ class BacklogItemsController < ApplicationController
       @all_tasks.push(@tasks)
   	end
 	  
-    @all_tasks.push(@stories_all)
+    @all_tasks.push(@stories_without_task)
 
     @all_tasks = @all_tasks.flatten
 	
