@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Button:</strong>
-  <%= @permission.button_id %>
+  <strong>Allowed for:</strong>
+  <%= @permission.allowed_for %>
 </p>
 
 <p>
-  <strong>Page:</strong>
-  <%= @permission.page %>
+  <strong>Denied for:</strong>
+  <%= @permission.denied_for %>
 </p>
 
 <p>
-  <strong>Right:</strong>
-  <%= @permission.right %>
+  <strong>Dash button:</strong>
+  <%= @permission.dash_button %>
 </p>
 
 <%= link_to 'Edit', edit_permission_path(@permission) %> |

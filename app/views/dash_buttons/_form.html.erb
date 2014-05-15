@@ -1,0 +1,25 @@
+<%= form_for(@dash_button) do |f| %>
+  <% if @dash_button.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dash_button.errors.count, "error") %> prohibited this dash_button from being saved:</h2>
+
+      <ul>
+      <% @dash_button.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_field :content %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.text_field :type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

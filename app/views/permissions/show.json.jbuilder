@@ -1,1 +1,1 @@
-json.extract! @permission, :id, :button_id, :page, :right, :created_at, :updated_at
+json.extract! @permission, :id, :allowed_for, :denied_for, :dash_button_id, :created_at, :updated_at
