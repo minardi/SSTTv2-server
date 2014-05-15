@@ -28,7 +28,7 @@ class BacklogItemsController < ApplicationController
     
     if @backlog_item.item_type == "sprint"
       if params.has_key?("start_date") && params.has_key?("end_date")
-        @backlog_item.info = {start_date: params[:start_date], end_date: params[:end_date]}.to_json
+        @backlog_item.info = {start_date: params[:start], end_date: params[:end]}.to_json
       else
         #@backlog_item.info = params[:info]
       end
@@ -50,7 +50,7 @@ class BacklogItemsController < ApplicationController
   def update
     if @backlog_item.item_type == "sprint"
       if params.has_key?("start_date") && params.has_key?("end_date")
-        @backlog_item.update(info: {start_date: params[:start_date], end_date: params[:end_date]}.to_json)
+        @backlog_item.update(info: {start_date: params[:start], end_date: params[:end]}.to_json)
       end
 
       if params[:backlog_item][:status] == 'failed'

@@ -1,5 +1,7 @@
 SSTaskTracker::Application.routes.draw do
 
+  resources :permissions
+
   get '/users/sign_up', to: redirect('/users/sign_in')
 
   devise_for :users
@@ -33,6 +35,8 @@ SSTaskTracker::Application.routes.draw do
   get 'users/get_role/:id' => 'users#get_role'
    
   resources :projects
+  
+  resources :dash_buttons
   
   resources :backlog_items
 

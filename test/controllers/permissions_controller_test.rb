@@ -18,7 +18,7 @@ class PermissionsControllerTest < ActionController::TestCase
 
   test "should create permission" do
     assert_difference('Permission.count') do
-      post :create, permission: { button_id: @permission.button_id, page: @permission.page, right: @permission.right }
+      post :create, permission: { allowed_for: @permission.allowed_for, dash_button_id: @permission.dash_button_id, denied_for: @permission.denied_for }
     end
 
     assert_redirected_to permission_path(assigns(:permission))
@@ -35,7 +35,7 @@ class PermissionsControllerTest < ActionController::TestCase
   end
 
   test "should update permission" do
-    patch :update, id: @permission, permission: { button_id: @permission.button_id, page: @permission.page, right: @permission.right }
+    patch :update, id: @permission, permission: { allowed_for: @permission.allowed_for, dash_button_id: @permission.dash_button_id, denied_for: @permission.denied_for }
     assert_redirected_to permission_path(assigns(:permission))
   end
 
