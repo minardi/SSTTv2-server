@@ -33,7 +33,11 @@ SSTaskTracker::Application.routes.draw do
   get 'users/get_role/:id' => 'users#get_role'
    
   resources :projects
+
+  resources :permissions
   
+  resources :dash_buttons
+	
   resources :backlog_items
 
   resources :stories
