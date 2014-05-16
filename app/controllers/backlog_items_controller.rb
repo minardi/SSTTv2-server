@@ -56,12 +56,25 @@ class BacklogItemsController < ApplicationController
 
       if params[:backlog_item][:status] == 'failed'
         @stories = BacklogItem.where(
-          "item_type = 'story' AND parent_id = ?",
+          "item_type = 'story' AND (NOT status = 'product') AND parent_id = ?",
           params[:id]
         )
 
         @stories.each do |story|
           story.update(status: "product", parent_id: @backlog_item[:parent_id])
+        end
+
+      end
+
+      if params[:backlog_item][:status] == 'done'
+        time = Time.now.strftime("%Y/%m/%d %H:00:00");
+        @stories = BacklogItem.where(
+          "item_type = 'story' AND (NOT status = 'product') AND parent_id = ?",
+          params[:id]
+        )
+
+        @stories.each do |story|
+          story.update(info: {end_date: time}.to_json)
         end
 
       end
@@ -147,6 +160,20 @@ class BacklogItemsController < ApplicationController
 	
 	  respond_to do |format|
       format.json { render json:  @all_tasks }
+    end
+  end
+
+  def get_stories
+    @sprint_id = params[:sprint_id]
+  
+    @stories = BacklogItem.where(
+      "item_type = ? AND (NOT status = 'product') AND parent_id = ?",
+      "story",  @sprint_id
+    )
+
+    @stories.each do |story|
+      info = ActiveSupport::JSON.decode(story[:info])
+      story[:info] = info
     end
   end
 

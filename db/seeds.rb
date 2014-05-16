@@ -62,7 +62,7 @@ items = BacklogItem.create([
 			parent_id: "1",
 			status: "active",
 			item_type: "sprint",
-            info: "{\"start\":\"2014-05-02\",\"end\":\"2014-05-31\"}"
+            info: "{\"start_date\":\"2014/05/02\",\"end_date\":\"2014/05/31\"}"
 		},
 		{
 			title: "Story1. Task1",
