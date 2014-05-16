@@ -28,9 +28,9 @@ SSTaskTracker::Application.routes.draw do
 
   get 'users/for-team/:id' => 'team_members#get_team_members', as: :team_member
 
-  get 'users/get_roles' => 'users#get_roles'
+  get "roles/for-user" => "users#get_roles"
 
-  get 'users/get_role/:id' => 'users#get_role'
+  get "roles/for-user/:id" => "users#get_roles"
    
   resources :projects
   
