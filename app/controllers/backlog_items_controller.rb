@@ -24,11 +24,12 @@ class BacklogItemsController < ApplicationController
   # POST /backlog_items
   # POST /backlog_items.json
   def create
+  
     @backlog_item = BacklogItem.new(backlog_item_all_params)
     
     if @backlog_item.item_type == "sprint"
       if params.has_key?("start_date") && params.has_key?("end_date")
-        @backlog_item.info = {start_date: params[:start_date], end_date: params[:end_date]}.to_json
+        @backlog_item.info = {start_date: params[:start], end_date: params[:end]}.to_json
       else
         #@backlog_item.info = params[:info]
       end
@@ -50,17 +51,30 @@ class BacklogItemsController < ApplicationController
   def update
     if @backlog_item.item_type == "sprint"
       if params.has_key?("start_date") && params.has_key?("end_date")
-        @backlog_item.update(info: {start_date: params[:start_date], end_date: params[:end_date]}.to_json)
+        @backlog_item.update(info: {start_date: params[:start], end_date: params[:end]}.to_json)
       end
 
       if params[:backlog_item][:status] == 'failed'
         @stories = BacklogItem.where(
-          "item_type = 'story' AND parent_id = ?",
+          "item_type = 'story' AND (NOT status = 'product') AND parent_id = ?",
           params[:id]
         )
 
         @stories.each do |story|
           story.update(status: "product", parent_id: @backlog_item[:parent_id])
+        end
+
+      end
+
+      if params[:backlog_item][:status] == 'done'
+        time = Time.now.strftime("%Y/%m/%d %H:00:00");
+        @stories = BacklogItem.where(
+          "item_type = 'story' AND (NOT status = 'product') AND parent_id = ?",
+          params[:id]
+        )
+
+        @stories.each do |story|
+          story.update(info: {end_date: time}.to_json)
         end
 
       end
@@ -149,6 +163,20 @@ class BacklogItemsController < ApplicationController
     end
   end
 
+  def get_stories
+    @sprint_id = params[:sprint_id]
+  
+    @stories = BacklogItem.where(
+      "item_type = ? AND (NOT status = 'product') AND parent_id = ?",
+      "story",  @sprint_id
+    )
+
+    @stories.each do |story|
+      info = ActiveSupport::JSON.decode(story[:info])
+      story[:info] = info
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_backlog_item
@@ -157,7 +185,7 @@ class BacklogItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def backlog_item_params
-      params.require(:backlog_item).permit(:title, :description, :estimation, :parent_id, :status, :item_type)
+      params.require(:backlog_item).permit(:title, :description, :estimation, :parent_id, :status, :item_type, :info)
     end
 
     def backlog_item_all_params

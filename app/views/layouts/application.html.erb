@@ -17,7 +17,6 @@
                 first_name: "<%= current_user.first_name %>",
                 last_name: "<%= current_user.last_name%>"
             };
-            <%= $current_roles.to_s %>
         <% end %>
     </script>
     
@@ -48,6 +47,7 @@
         <script src="app/scripts/templates.js"></script>
 
         <!-- module User -->
+        <script src="app/scripts/User/UserModel.js"></script>
         <script src="app/scripts/User/UserModelView.js"></script>
 
         <!-- module Projects-->
@@ -123,6 +123,15 @@
          
         <!-- module PlanningBoard-->
         <script src="app/scripts/PlanningBoard/PlanningBoardModelView.js"></script>
+         
+        <!-- module Statistics-->
+        <script src="app/scripts/Statistics/StatisticsModel.js"></script>
+        <script src="app/scripts/Statistics/StatisticsCollection.js"></script>
+        <script src="app/scripts/Statistics/StatisticsModelView.js"></script>
+        <script src="app/scripts/Statistics/StatisticsCollectionView.js"></script>
+
+        <!-- module Confirmation-->
+        <script src="app/scripts/Confirmation/ConfirmationModelView.js"></script>
          
         <!-- endbuild -->
     <% end %>

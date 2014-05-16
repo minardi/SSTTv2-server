@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140420231728) do
+ActiveRecord::Schema.define(version: 20140515133956) do
 
   create_table "backlog_items", force: true do |t|
     t.string   "title"
@@ -25,6 +25,24 @@ ActiveRecord::Schema.define(version: 20140420231728) do
     t.datetime "updated_at"
   end
 
+  create_table "dash_buttons", force: true do |t|
+    t.string   "btn_content"
+    t.string   "btn_type"
+    t.string   "permission"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "permissions", force: true do |t|
+    t.text     "allowed_for"
+    t.text     "denied_for"
+    t.integer  "dash_button_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "permissions", ["dash_button_id"], name: "index_permissions_on_dash_button_id"
+
   create_table "projects", force: true do |t|
     t.string   "title"
     t.string   "description"
@@ -34,36 +52,6 @@ ActiveRecord::Schema.define(version: 20140420231728) do
     t.string   "finish"
     t.string   "owner"
     t.string   "pm"
-  end
-
-  create_table "sprints", force: true do |t|
-    t.string   "title"
-    t.string   "description"
-    t.integer  "project_id"
-    t.string   "start"
-    t.string   "finish"
-    t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "stories", force: true do |t|
-    t.string   "title"
-    t.string   "description"
-    t.string   "project_id"
-    t.string   "status"
-    t.string   "sprint_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tasks", force: true do |t|
-    t.string   "title"
-    t.string   "description"
-    t.string   "status"
-    t.integer  "story_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "team_members", force: true do |t|

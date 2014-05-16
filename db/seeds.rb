@@ -62,7 +62,7 @@ items = BacklogItem.create([
 			parent_id: "1",
 			status: "active",
 			item_type: "sprint",
-            info: "{\"start_date\":\"2014-05-02\",\"end_date\":\"2014-05-31\"}"
+            info: "{\"start_date\":\"2014/05/02\",\"end_date\":\"2014/05/31\"}"
 		},
 		{
 			title: "Story1. Task1",
@@ -81,6 +81,73 @@ items = BacklogItem.create([
 			item_type: "task"
 		}
    ])
+   
+buttons = DashButton.create([
+	{
+		btn_content: "Back",
+		btn_type: "back" 
+	},
+	{
+		btn_content: "BackFromTeamEditPage",
+		btn_type: "back" 
+	},
+	{
+		btn_content: "Team",
+		btn_type: "team" 
+	},
+	{
+		btn_content: "Configure",
+		btn_type: "config" 
+	},
+	{
+		btn_content: "Delete",
+		btn_type: "delete" 
+	},
+	{
+		btn_content: "Configure",
+		btn_type: "config" 
+	},
+	{
+		btn_content: "Delete",
+		btn_type: "delete" 
+	}])
+
+permissions = Permission.create([
+	{
+		allowed_for: [],
+		denied_for: ["project_page", "team_edit_page"], 
+		dash_button_id: 1
+	},
+	{
+		allowed_for: ["team_edit_page"],
+		denied_for: [], 
+		dash_button_id: 2
+	},
+	{
+		allowed_for: ["pm"],
+		denied_for: ["team_page", "team_edit_page"], 
+		dash_button_id: 3
+	},
+	{
+		allowed_for: ["pm"],
+		denied_for: ["scrum_page"], 
+		dash_button_id: 4
+	},
+	{
+		allowed_for: ["pm"],
+		denied_for: ["scrum_page"], 
+		dash_button_id: 5
+	},
+	{
+		allowed_for: ["techlead"],
+		denied_for: ["project_page", "team_page", "team_edit_page"], 
+		dash_button_id: 6
+	},
+	{
+		allowed_for: ["techlead"],
+		denied_for: ["project_page", "team_page", "team_edit_page"], 
+		dash_button_id: 7
+	}])
 
 projects = Project.create([
     {
@@ -216,105 +283,4 @@ team_member = TeamMember.create([
         team_id: 5,
         role: 'developer'   
     }])
-
-stories = Story.create([
-  {
-    :title => "Project1.Sprintstory1",
-    :description => "beatiful",
-    :status => "Sprint",
-    :project_id => "1",
-    :sprint_id => "1"
-  },
-  {
-    :title => "Project1.Productstory1",
-    :description => "beatiful",
-    :status => "Product",
-    :project_id => "1",
-    :sprint_id => "1"
-  },
-  {
-    :title => "Project2.Productstory1",
-    :description => "beatiful",
-    :status => "Product",
-    :project_id => "2",
-    :sprint_id => "3"
-  },
-  {
-    :title => 'Project1.Productstory2',
-    :description => "beatiful",
-    :status => "Product",
-    :project_id => "2",
-    :sprint_id => "3"
-  }])
-
-tasks = Task.create([
-    {
-        title: 'First task',
-        description: 'task for 1 story',
-        story_id: 1,        
-        status: 'todo'
-    },
-    {
-        title: 'Second task',
-        description: 'task for 1 story',
-        story_id: 1,       
-        status: 'done'
-    },
-    {
-        title: 'Third task',
-        description: 'task for 1 story',
-        story_id: 1,        
-        status: 'in-progress'
-    },
-    {
-        title: 'Fourth task',
-        description: 'task for 2 story',
-        story_id: 2,        
-        status: 'done'
-    },
-    {
-        title: 'Fifth task',
-        description: 'task for 3 story',
-        story_id: 3,       
-        status: 'in-progress'
-    },
-    {
-        title: 'Sixth task',
-        description: 'task for 4 story',
-        story_id: 4,        
-        status: 'done'
-    },
-    {
-        title: 'Seventh task',
-        description: 'task for 4 story',
-        story_id: 4,        
-        status: 'done'
-    }])
-
-sprints = Sprint.create([    
-    {
-        title: 'First sprint',
-        description: 'sprint1 for project1',
-        project_id: 1,        
-        status: 'active',
-        start: '10.10.2013',
-        finish: '24.10.2013'
-    },
-    {
-        title: 'Second sprint',
-        description: 'sprint2 for project1',
-        project_id: 1,        
-        status: 'unactive',
-        start: '24.10.2013',
-        finish: '12.11.2013'
-    },
-    {
-        title: 'First sprint',
-        description: 'sprint1 for project2',
-        project_id: 2,        
-        status: 'active',
-        start: '3.03.2014',
-        finish: '15.03.2014'
-    }])
-
 
