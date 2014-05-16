@@ -5,6 +5,7 @@ class DashButtonsController < ApplicationController
   # GET /dash_buttons.json
   def index
     @dash_buttons = DashButton.all
+	
   end
 
   # GET /dash_buttons/1
@@ -69,6 +70,6 @@ class DashButtonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dash_button_params
-      params.require(:dash_button).permit(:btn_content, :btn_type)
+      params.require(:dash_button).permit(:btn_content, :btn_type, :permission)
     end
 end

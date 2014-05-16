@@ -3,9 +3,9 @@
 <table>
   <thead>
     <tr>
-	  <th>Id</th>
-      <th>Content</th>
-      <th>Type</th>
+      <th>Btn content</th>
+      <th>Btn type</th>
+      <th>Permission</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,9 +15,9 @@
   <tbody>
     <% @dash_buttons.each do |dash_button| %>
       <tr>
-	    <td><%= dash_button.id %></td>
         <td><%= dash_button.btn_content %></td>
         <td><%= dash_button.btn_type %></td>
+        <td><%= dash_button.permission %></td>
         <td><%= link_to 'Show', dash_button %></td>
         <td><%= link_to 'Edit', edit_dash_button_path(dash_button) %></td>
         <td><%= link_to 'Destroy', dash_button, method: :delete, data: { confirm: 'Are you sure?' } %></td>

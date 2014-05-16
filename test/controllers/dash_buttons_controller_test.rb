@@ -18,7 +18,7 @@ class DashButtonsControllerTest < ActionController::TestCase
 
   test "should create dash_button" do
     assert_difference('DashButton.count') do
-      post :create, dash_button: { content: @dash_button.content, type: @dash_button.type }
+      post :create, dash_button: { btn_content: @dash_button.btn_content, btn_type: @dash_button.btn_type, permission: @dash_button.permission }
     end
 
     assert_redirected_to dash_button_path(assigns(:dash_button))
@@ -35,7 +35,7 @@ class DashButtonsControllerTest < ActionController::TestCase
   end
 
   test "should update dash_button" do
-    patch :update, id: @dash_button, dash_button: { content: @dash_button.content, type: @dash_button.type }
+    patch :update, id: @dash_button, dash_button: { btn_content: @dash_button.btn_content, btn_type: @dash_button.btn_type, permission: @dash_button.permission }
     assert_redirected_to dash_button_path(assigns(:dash_button))
   end
 

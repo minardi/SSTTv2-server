@@ -1,7 +1,5 @@
 SSTaskTracker::Application.routes.draw do
 
-  resources :permissions
-
   get '/users/sign_up', to: redirect('/users/sign_in')
 
   devise_for :users
@@ -13,6 +11,7 @@ SSTaskTracker::Application.routes.draw do
   patch 'backlog_items/get_active_sprint/:parent_id/:id', to: redirect('/backlog_items/%{id}')
   
   get 'backlog_items/get_tasks/:sprint_id' => 'backlog_items#get_tasks'
+  get 'backlog_items/get_stories/:sprint_id' => 'backlog_items#get_stories'
 
   get 'projects/info/:id' => 'projects#get_project_info'
   
@@ -30,14 +29,16 @@ SSTaskTracker::Application.routes.draw do
 
   get 'users/for-team/:id' => 'team_members#get_team_members', as: :team_member
 
-  get 'users/get_roles' => 'users#get_roles'
+  get "roles/for-user" => "users#get_roles"
 
-  get 'users/get_role/:id' => 'users#get_role'
+  get "roles/for-user/:id" => "users#get_roles"
    
   resources :projects
+
+  resources :permissions
   
   resources :dash_buttons
-  
+	
   resources :backlog_items
 
   resources :stories
