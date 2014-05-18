@@ -114,18 +114,18 @@ buttons = DashButton.create([
 
 permissions = Permission.create([
 	{
-		allowed_for: [],
+		allowed_for: ["scrum_page", "team_page"],
 		denied_for: ["project_page", "team_edit_page"], 
 		dash_button_id: 1
 	},
 	{
 		allowed_for: ["team_edit_page"],
-		denied_for: [], 
+		denied_for: ["project_page", "scrum_page", "team_page"], 
 		dash_button_id: 2
 	},
 	{
 		allowed_for: ["pm"],
-		denied_for: ["team_page", "team_edit_page"], 
+		denied_for: ["project_page", "team_page", "team_edit_page"], 
 		dash_button_id: 3
 	},
 	{

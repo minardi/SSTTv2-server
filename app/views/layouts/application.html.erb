@@ -15,8 +15,9 @@
             var current_user_content = {
                 id: <%= current_user.id %>,
                 first_name: "<%= current_user.first_name %>",
-                last_name: "<%= current_user.last_name%>"
-            };
+                last_name: "<%= current_user.last_name%>",
+                roles: <%= @roles.to_s.html_safe %>
+            };          
         <% end %>
     </script>
     
@@ -29,7 +30,7 @@
         <!-- endbuild -->
 
         <!-- build:js app/scripts/vendor.js -->
-        <script src="app/bower_components/modernizr/modernizr.js"></script>		
+        <script src="app/bower_components/modernizr/modernizr.js"></script>     
         <script src="app/bower_components/jquery/jquery.js"></script>
 
         <script src="app/lib/jq-ajax-setup.js"></script>
@@ -39,8 +40,6 @@
         <script src="app/lib/backbone-mediator.js"></script>
         <script src="app/lib/backbone-modelBinder.js"></script>
         <script src="app/lib/datepicker/js/bootstrap-datepicker.js"></script>
-        <script src="app/lib/flot/jquery.flot.js"></script>
-        <script src="app/lib/flot/jquery.flot.time.js"></script>
         <!-- endbuild -->
     
         <!-- build:js({.tmp,app}) app/scripts/main.js -->
@@ -49,7 +48,6 @@
         <script src="app/scripts/templates.js"></script>
 
         <!-- module User -->
-        <script src="app/scripts/User/UserModel.js"></script>
         <script src="app/scripts/User/UserModelView.js"></script>
 
         <!-- module Projects-->
