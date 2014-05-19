@@ -63,22 +63,7 @@ class BacklogItemsController < ApplicationController
         @stories.each do |story|
           story.update(status: "product", parent_id: @backlog_item[:parent_id])
         end
-
       end
-
-      if params[:backlog_item][:status] == 'done'
-        time = Time.now.strftime("%Y/%m/%d %H:%M:%S");
-        @stories = BacklogItem.where(
-          "item_type = 'story' AND (NOT status = 'product') AND parent_id = ?",
-          params[:id]
-        )
-
-        @stories.each do |story|
-          story.update(info: {end_date: time}.to_json)
-        end
-
-      end
-
     end
 
     respond_to do |format|
@@ -88,6 +73,13 @@ class BacklogItemsController < ApplicationController
       else
         format.html { render action: 'edit' }
         format.json { render json: @backlog_item.errors, status: :unprocessable_entity }
+      end
+    end
+
+    if @backlog_item.item_type == "story"
+      if params[:backlog_item][:status] == 'done'
+        time = Time.now.strftime("%Y/%m/%d %H:%M:%S");
+        @backlog_item.update(info: {end_date: time}.to_json)
       end
     end
   end
