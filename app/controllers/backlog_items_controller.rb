@@ -67,7 +67,7 @@ class BacklogItemsController < ApplicationController
       end
 
       if params[:backlog_item][:status] == 'done'
-        time = Time.now.strftime("%Y/%m/%d %H:00:00");
+        time = Time.now.strftime("%Y/%m/%d %H:%M:%S");
         @stories = BacklogItem.where(
           "item_type = 'story' AND (NOT status = 'product') AND parent_id = ?",
           params[:id]

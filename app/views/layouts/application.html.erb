@@ -15,9 +15,9 @@
             var current_user_content = {
                 id: <%= current_user.id %>,
                 first_name: "<%= current_user.first_name %>",
-                last_name: "<%= current_user.last_name%>"
-            };
-            <%= $current_roles.to_s %>
+                last_name: "<%= current_user.last_name%>",
+                roles: <%= @roles.to_s.html_safe %>
+            };          
         <% end %>
     </script>
     
@@ -40,6 +40,8 @@
         <script src="app/lib/backbone-mediator.js"></script>
         <script src="app/lib/backbone-modelBinder.js"></script>
         <script src="app/lib/datepicker/js/bootstrap-datepicker.js"></script>
+        <script src="app/lib/flot/jquery.flot.js"></script>
+        <script src="app/lib/flot/jquery.flot.time.js"></script>
         <!-- endbuild -->
     
         <!-- build:js({.tmp,app}) app/scripts/main.js -->
@@ -86,11 +88,11 @@
         <script src="app/scripts/ScrumBoard/ScrumBoardModelView.js"></script>
         <script src="app/scripts/ScrumBoard/ScrumBoardCollectionView.js"></script>
          
-        <!-- module DashBoard-->
-        <script src="app/scripts/DashBoard/DashBoardModel.js"></script>
-        <script src="app/scripts/DashBoard/DashBoardCollection.js"></script>
-        <script src="app/scripts/DashBoard/DashBoardModelView.js"></script>
-        <script src="app/scripts/DashBoard/DashBoardCollectionView.js"></script>
+        <!-- module ContextMenu-->
+        <script src="app/scripts/ContextMenu/ContextMenuModel.js"></script>
+        <script src="app/scripts/ContextMenu/ContextMenuCollection.js"></script>
+        <script src="app/scripts/ContextMenu/ContextMenuModelView.js"></script>
+        <script src="app/scripts/ContextMenu/ContextMenuCollectionView.js"></script>
          
         <!-- module TeamEditPage-->
         <script src="app/scripts/TeamEditPage/TeamEditPageModel.js"></script>
