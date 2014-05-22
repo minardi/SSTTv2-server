@@ -30,8 +30,6 @@ class BacklogItemsController < ApplicationController
     if @backlog_item.item_type == "sprint"
       if params.has_key?("start_date") && params.has_key?("end_date")
         @backlog_item.info = {start_date: params[:start], end_date: params[:end]}.to_json
-      else
-        #@backlog_item.info = params[:info]
       end
     end
 
@@ -62,6 +60,20 @@ class BacklogItemsController < ApplicationController
 
         @stories.each do |story|
           story.update(status: "product", parent_id: @backlog_item[:parent_id])
+        end
+      end
+    else
+      if @backlog_item.item_type == "task" && params[:status] == "done"
+        @tasks = BacklogItem.where(
+          "item_type = 'task' AND (Not status = 'done') AND parent_id = ? AND id !=?",
+          params[:parent_id], params[:id]
+        )
+        if(@tasks.size == 0)
+          @story = BacklogItem.where(
+            "id = ?", params[:parent_id]
+          ).take
+          time = Time.now.strftime("%Y/%m/%d %H:%M:%S")
+          @story.update(info: {end_date: time}.to_json)
         end
       end
     end
