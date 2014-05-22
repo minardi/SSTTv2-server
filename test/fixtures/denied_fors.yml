@@ -1,11 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  allowed_for: MyText
-  denied_for: MyText
+  restrictions: MyString
   dash_button_id: 
 
 two:
-  allowed_for: MyText
-  denied_for: MyText
+  restrictions: MyString
   dash_button_id: 

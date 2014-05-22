@@ -3,9 +3,9 @@
 <table>
   <thead>
     <tr>
-      <th>Button</th>
-      <th>Page</th>
-      <th>Right</th>
+      <th>Allowed for</th>
+      <th>Denied for</th>
+      <th>Dash button</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,9 +15,9 @@
   <tbody>
     <% @permissions.each do |permission| %>
       <tr>
-        <td><%= permission.button_id %></td>
-        <td><%= permission.page %></td>
-        <td><%= permission.right %></td>
+        <td><%= permission.allowed_for %></td>
+        <td><%= permission.denied_for %></td>
+        <td><%= permission.dash_button %></td>
         <td><%= link_to 'Show', permission %></td>
         <td><%= link_to 'Edit', edit_permission_path(permission) %></td>
         <td><%= link_to 'Destroy', permission, method: :delete, data: { confirm: 'Are you sure?' } %></td>

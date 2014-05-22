@@ -65,11 +65,29 @@ class ProjectsController < ApplicationController
       @user = User.find(params[:id])
 
       @proj = []
+      @roles = {}
+      @priority_role = {
+                          "techlead" => 1,
+                          "developer" => 2,
+                          "watcher" => 3
+                      }    
+
+      @user.team_members.each do |team_member|
+        if team_member.role != 'null'
+          @project_id = team_member.team.project_id
+          @role = team_member.role
+
+          if !(@roles.has_key?(@project_id)) || (@priority_role[@role] < @priority_role[@roles[@project_id]]) 
+              @roles[@project_id] = @role
+          end 
+        end
+      end
+
       @projects = @user.team_members.each do |team_member| 
       if team_member.role != 'null'
         @proj_id = team_member.team.project_id
         @project = Project.find(params[:id] = @proj_id)
-                  
+
         @project_new = {
           :id =>  @project.id,
           :title => @project.title,
@@ -77,7 +95,7 @@ class ProjectsController < ApplicationController
           :owner => @project.owner,
           :start => @project.start,
           :finish => @project.finish,
-          :role => team_member.role,
+          :role => @roles[@proj_id],
           :pm => { 
             :user_id => @project.pm,
             :first_name => User.where(["id = ?", @project.pm]).first.first_name,

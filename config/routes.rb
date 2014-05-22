@@ -5,8 +5,13 @@ SSTaskTracker::Application.routes.draw do
   devise_for :users
   
   get 'backlog_items/get_items/:item_type/:status/:parent_id' => 'backlog_items#get_items'
+
+  get 'backlog_items/get_active_sprint/:parent_id' => 'backlog_items#get_active_sprint'
+  put 'backlog_items/get_active_sprint/:parent_id/:id', to: redirect('/backlog_items/%{id}')
+  patch 'backlog_items/get_active_sprint/:parent_id/:id', to: redirect('/backlog_items/%{id}')
   
-  get 'backlog_items/get_tasks/:project_id' => 'backlog_items#get_tasks'
+  get 'backlog_items/get_tasks/:sprint_id' => 'backlog_items#get_tasks'
+  get 'backlog_items/get_stories/:sprint_id' => 'backlog_items#get_stories'
 
   get 'projects/info/:id' => 'projects#get_project_info'
   
@@ -23,9 +28,17 @@ SSTaskTracker::Application.routes.draw do
   get "teams/for-project/:id" => "teams#get_teams"
 
   get 'users/for-team/:id' => 'team_members#get_team_members', as: :team_member
+
+  get "roles/for-user" => "users#get_roles"
+
+  get "roles/for-user/:id" => "users#get_roles"
    
   resources :projects
+
+  resources :permissions
   
+  resources :dash_buttons
+	
   resources :backlog_items
 
   resources :stories
