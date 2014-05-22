@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @button.content %>
+</p>
+
+<p>
+  <strong>Glyph:</strong>
+  <%= @button.glyph %>
+</p>
+
+<p>
+  <strong>Show only:</strong>
+  <%= @button.show_only %>
+</p>
+
+<p>
+  <strong>Show except:</strong>
+  <%= @button.show_except %>
+</p>
+
+<%= link_to 'Edit', edit_button_path(@button) %> |
+<%= link_to 'Back', buttons_path %>
